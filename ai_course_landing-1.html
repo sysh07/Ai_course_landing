@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI - Agentic Systems Course | Hyderabad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) { width: 80px; height: 80px; left: 10%; top: 20%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 120px; height: 120px; right: 15%; top: 40%; animation-delay: 2s; }
+        .shape:nth-child(3) { width: 60px; height: 60px; left: 20%; bottom: 30%; animation-delay: 4s; }
+        .shape:nth-child(4) { width: 100px; height: 100px; right: 25%; bottom: 20%; animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #f0f0f0;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffd700, #ff6b6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .features {
+            background: #fff;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modules-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 4rem 2rem;
+        }
+
+        .accordion-container {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 100px; /* Ensure container is visible */
+            position: relative;
+        }
+
+        .accordion-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            min-height: 60px; /* Ensure accordion headers are always visible */
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            user-select: none;
+            position: relative;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #5a6fd8, #6a4190);
+        }
+
+        .accordion-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .accordion-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0.3rem 0 0 0;
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #fff;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
+        }
+
+        .accordion-body {
+            padding: 2rem;
+        }
+
+        .module-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .module-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .module-details {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .detail-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .detail-section h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .detail-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .detail-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .detail-section li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .registration-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 2rem;
+            color: #fff;
+        }
+
+        .registration-form {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 2rem auto 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .registration-form h3 {
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .offer-badge {
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #f0f0f0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            /* Accordion Mobile Styles */
+            .accordion-container {
+                padding: 1rem;
+                margin: 0 1rem;
+            }
+            
+            .accordion-header {
+                padding: 1rem;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+            
+            .accordion-title {
+                font-size: 1.1rem;
+                line-height: 1.3;
+            }
+            
+            .accordion-subtitle {
+                font-size: 0.8rem;
+            }
+            
+            .accordion-icon {
+                font-size: 1.2rem;
+                flex-shrink: 0;
+                margin-left: 1rem;
+            }
+            
+            .accordion-item.active .accordion-icon {
+                transform: rotate(180deg);
+            }
+            
+            .accordion-body {
+                padding: 1rem;
+            }
+            
+            .accordion-item.active .accordion-content {
+                max-height: 2000px; /* Increased for mobile content */
+            }
+            
+            .detail-section {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .detail-section h4 {
+                font-size: 1rem;
+            }
+            
+            .detail-section li {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+            
+            /* Additional mobile improvements */
+            .modules-section {
+                padding: 2rem 1rem;
+            }
+            
+            .accordion-item {
+                margin-bottom: 0.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Master <span class="highlight">Generative AI</span> & Agent Systems</h1>
+            <p class="subtitle">Hyderabad's First & Largest Course on Building Future-Ready AI Solutions</p>
+            <div class="cta-buttons">
+                <a href="#register" class="btn btn-primary">Enroll Now - FREE</a>
+                <a href="#modules" class="btn btn-secondary">Explore Curriculum</a>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Modules</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Months</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100</div>
+                    <div class="stat-label">Free Seats</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose This Course?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>Hands-On Projects</h3>
+                    <p>Build real-world Agent Systems you can showcase on your resume</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Complete Resources</h3>
+                    <p>Full source code, training materials, and practical insights</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Industry-Relevant</h3>
+                    <p>Learn skills transforming education, finance, healthcare & more</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Career Advantage</h3>
+                    <p>Stand out with in-demand AI expertise employers are seeking</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="modules-section" id="modules">
+        <div class="container">
+            <h2 class="section-title">Course Modules</h2>
+            <div class="accordion-container" id="accordionContainer">
+                <!-- Accordion items will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section class="registration-section" id="register">
+        <div class="container">
+            <h2 class="section-title" style="color: #fff;">Secure Your Spot Now!</h2>
+            <div class="registration-form">
+                <div class="offer-badge">
+                    🎉 First 100 Students in Hyderabad/Telangana: COMPLETELY FREE!
+                    <br>Regular Fee: <span style="text-decoration: line-through;">₹15,000</span>
+                </div>
+                <h3>Registration Form</h3>
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">City *</label>
+                        <input type="text" id="location" name="location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="education">Educational Background *</label>
+                        <select id="education" name="education" required>
+                            <option value="">Select...</option>
+                            <option value="undergraduate">Undergraduate Student</option>
+                            <option value="graduate">Graduate</option>
+                            <option value="postgraduate">Postgraduate</option>
+                            <option value="working">Working Professional</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Programming Experience *</label>
+                        <select id="experience" name="experience" required>
+                            <option value="">Select...</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="motivation">Why do you want to join this course?</label>
+                        <textarea id="motivation" name="motivation" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Submit Registration</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const modules = [
+            {
+                title: "Module I: Foundations",
+                subtitle: "Python Software Engineering & Web Stack",
+                topics: [
+                    "Advanced OOP and testing (unittest/pytest)",
+                    "Virtual environments and dependencies",
+                    "HTML5, CSS3, JavaScript basics",
+                    "Flask/Django backend setup",
+                    "MySQL and SQLAlchemy ORM"
+                ],
+                project: "Setup local development environment and MySQL connection"
+            },
+            {
+                title: "Module II: Introduction to Generative AI",
+                subtitle: "Understanding LLMs and Their Applications",
+                topics: [
+                    "Generative AI principles and concepts",
+                    "LLM architectures (Transformers)",
+                    "Interacting with LLM APIs (Gemini, OpenAI)",
+                    "Effective prompt engineering techniques",
+                    "Best practices for AI integration"
+                ],
+                project: "Create Python scripts to generate content (essays, code snippets)"
+            },
+            {
+                title: "Module III: Generative AI Integration",
+                subtitle: "Data Handling & Advanced API Management",
+                topics: [
+                    "Managing API keys and rate limits",
+                    "Asynchronous API calls",
+                    "Generating synthetic data",
+                    "Summarizing large documents",
+                    "Transforming LLM output to structured JSON"
+                ],
+                project: "Build an LLM system to extract key information from documents"
+            },
+            {
+                title: "Module IV: AI Agent Development",
+                subtitle: "Fundamentals of Intelligent Agents",
+                topics: [
+                    "Agent components: Memory, Tools, Planning, Reasoning",
+                    "Introduction to LangChain and CrewAI",
+                    "Building single-task agents",
+                    "Document analysis agents",
+                    "Agent decision-making patterns"
+                ],
+                project: "Build a Document Handler Agent for file analysis and extraction"
+            },
+            {
+                title: "Module V: Multi-Agent Systems",
+                subtitle: "Building Collaborative AI Workflows",
+                topics: [
+                    "Designing multi-agent workflows",
+                    "Agent-to-agent communication",
+                    "Custom Python functions as tools",
+                    "External API integration (Google Search)",
+                    "ReAct and iterative reasoning patterns"
+                ],
+                project: "Create a Scoring/Feedback Agent that references MySQL rubrics"
+            },
+            {
+                title: "Module VI: Product Development",
+                subtitle: "Backend API & Database Integration",
+                topics: [
+                    "Integrating Python backend with front-end",
+                    "MySQL schema design for complex systems",
+                    "Creating secure RESTful endpoints",
+                    "User authentication and authorization",
+                    "Database optimization for AI applications"
+                ],
+                project: "Implement backend API and database for Paper Correction System"
+            },
+            {
+                title: "Module VII: Web Application Integration",
+                subtitle: "Connecting Agents to Dynamic Interfaces",
+                topics: [
+                    "Background services for agent execution",
+                    "Real-time interaction with AJAX/WebSockets",
+                    "UI/UX design for AI-powered applications",
+                    "Displaying agent progress and results",
+                    "User flow optimization"
+                ],
+                project: "Complete full-stack Paper Correction System (Project 1 Completion)"
+            },
+            {
+                title: "Module VIII: Deployment & Production",
+                subtitle: "Taking Your AI System Live",
+                topics: [
+                    "Security best practices for production",
+                    "Unit, integration, and end-to-end testing",
+                    "Docker containerization",
+                    "Cloud platform deployment",
+                    "Monitoring and maintenance"
+                ],
+                project: "Build and deploy advanced Multi-Agent System (Project 2 Completion)"
+            }
+        ];
+
+        function createAccordion() {
+            const container = document.getElementById('accordionContainer');
+            console.log('Creating accordion, modules count:', modules.length);
+            
+            if (!container) {
+                console.error('Accordion container not found!');
+                return;
+            }
+            
+            modules.forEach((module, index) => {
+                console.log('Creating module:', index, module.title);
+                const accordionItem = document.createElement('div');
+                accordionItem.className = 'accordion-item';
+                accordionItem.style.display = 'block'; // Ensure visibility
+                accordionItem.innerHTML = `
+                    <div class="accordion-header" onclick="toggleAccordion(${index})">
+                        <div>
+                            <h3 class="accordion-title">${module.title}</h3>
+                            <p class="accordion-subtitle">${module.subtitle}</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="detail-section">
+                                <h4>Key Topics & Content</h4>
+                                <ul>
+                                    ${module.topics.map(topic => `<li>${topic}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="detail-section">
+                                <h4>Hands-On Project</h4>
+                                <p>${module.project}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(accordionItem);
+                console.log('Added accordion item:', index);
+            });
+            
+            console.log('Accordion creation complete. Container children:', container.children.length);
+        }
+
+        function toggleAccordion(index) {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            const clickedItem = accordionItems[index];
+            
+            // Toggle the clicked item
+            clickedItem.classList.toggle('active');
+            
+            // Optional: Close other items (uncomment the lines below for single-open behavior)
+            // accordionItems.forEach((item, i) => {
+            //     if (i !== index) {
+            //         item.classList.remove('active');
+            //     }
+            // });
+        }
+
+        // Initialize accordion on page load
+        function initAccordion() {
+            console.log('Initializing accordion...');
+            const container = document.getElementById('accordionContainer');
+            console.log('Container found:', container);
+            if (container) {
+                createAccordion();
+                console.log('Accordion created, items count:', document.querySelectorAll('.accordion-item').length);
+            } else {
+                console.error('Accordion container not found, retrying in 100ms...');
+                setTimeout(initAccordion, 100);
+            }
+        }
+
+        // Try multiple initialization methods
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAccordion);
+        } else {
+            initAccordion();
+        }
+        
+        // Fallback initialization
+        window.addEventListener('load', function() {
+            if (document.querySelectorAll('.accordion-item').length === 0) {
+                console.log('Fallback initialization...');
+                initAccordion();
+            }
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for registering! We will contact you shortly with further details.');
+            this.reset();
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
